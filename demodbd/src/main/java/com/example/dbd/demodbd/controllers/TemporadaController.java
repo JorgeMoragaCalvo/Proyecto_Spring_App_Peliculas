@@ -1,54 +1,50 @@
 package com.example.dbd.demodbd.controllers;
 
 import com.example.dbd.demodbd.entities.TemporadaEntity;
+import com.example.dbd.demodbd.services.TemporadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.dbd.demodbd.repositories.TemporadaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/temporada")
+@RequestMapping("/demodbd/temporadas")
 public class TemporadaController {
-    private final TemporadaRepository temporadaRepository;
+    private final TemporadaService temporadaService;
 
     @Autowired
-    public TemporadaController(TemporadaRepository temporadaRepository) {
-        this.temporadaRepository = temporadaRepository;
+    public TemporadaController(TemporadaService temporadaService) {
+        this.temporadaService = temporadaService;
     }
 
-    @PostMapping
-    public ResponseEntity<TemporadaEntity> crearTemporada(@RequestBody TemporadaEntity temporadaEntity) {
-        TemporadaEntity nuevaTemporada = temporadaRepository.save(temporadaEntity);
-        return ResponseEntity.ok(nuevaTemporada);
+    @PostMapping("/")
+    public TemporadaEntity createTemporada(@RequestBody TemporadaEntity temporadaEntity) {
+        return temporadaService.createTemporadas(temporadaEntity);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TemporadaEntity> obtenerTemporada(@PathVariable long id){
-        TemporadaEntity temporadaEntity = temporadaRepository.findById(id).orElse(null);
-        return ResponseEntity.ok(temporadaEntity);
+    public Optional<TemporadaEntity> getTemporadaById(@PathVariable long id){
+        Optional<TemporadaEntity> optionalTemporadaEntity = temporadaService.getTemporadasById(id);
+        if(!optionalTemporadaEntity.isPresent()) throw new RuntimeException("La Temporada con el id: " + id + " no existe");
+        return optionalTemporadaEntity;
     }
 
-    @GetMapping
-    public ResponseEntity<Iterable<TemporadaEntity>> obtenerTodasLasTemporadas(){
-        Iterable<TemporadaEntity> temporadas = temporadaRepository.findAll();
-        return ResponseEntity.ok(temporadas);
+    @GetMapping("/")
+    public List<TemporadaEntity> getTemporadas(){
+        return temporadaService.getAllTemporadas();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TemporadaEntity> actualizarTemporada(@PathVariable long id, @RequestBody TemporadaEntity temporadaEntity) {
-        TemporadaEntity temporadaActualizada = temporadaRepository.findById(id).orElse(null);
-        temporadaActualizada.setGlosa(temporadaEntity.getGlosa());
-        temporadaActualizada.setAnio(temporadaEntity.getAnio());
-        temporadaRepository.save(temporadaActualizada);
-        return ResponseEntity.ok(temporadaActualizada);
+    public TemporadaEntity updateTemporada(@PathVariable(value = "id") Long id, @RequestBody TemporadaEntity temporadaEntity) {
+        return temporadaService.updateTemporadas(id, temporadaEntity);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<TemporadaEntity> eliminarTemporada(@PathVariable long id) {
-        temporadaRepository.deleteById(id);
-        return ResponseEntity.ok(null);
+    public void deleteTemporada(@PathVariable(value = "id") Long id) {
+        temporadaService.deleteTemporadas(id);
     }
 
 }

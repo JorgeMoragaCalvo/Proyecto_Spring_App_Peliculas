@@ -2,51 +2,48 @@ package com.example.dbd.demodbd.controllers;
 
 import com.example.dbd.demodbd.entities.SerieEntity;
 import com.example.dbd.demodbd.repositories.SerieRepository;
+import com.example.dbd.demodbd.services.SerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/serie")
+@RequestMapping("/demodbd/series")
 public class SerieController {
-    private final SerieRepository serieRepository;
+    private final SerieService serieService;
 
     @Autowired
-    public SerieController(SerieRepository serieRepository) {
-        this.serieRepository = serieRepository;
+    public SerieController(SerieService serieService) {
+        this.serieService = serieService;
     }
 
-    @PostMapping
-    public ResponseEntity<SerieEntity> crearSerie(@RequestBody SerieEntity serieEntity) {
-        SerieEntity nuevaSerie = serieRepository.save(serieEntity);
-        return ResponseEntity.ok(nuevaSerie);
+    @PostMapping("/")
+    public SerieEntity createSerie(@RequestBody SerieEntity serieEntity) {
+        return serieService.createSeries(serieEntity);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<SerieEntity> obtenerSerie(@PathVariable long id){
-        SerieEntity serieEntity = serieRepository.findById(id).orElse(null);
-        return ResponseEntity.ok(serieEntity);
+    public Optional<SerieEntity> getSerieById(@PathVariable long id){
+        Optional<SerieEntity> optionalSerieEntity = serieService.getAllSeriesById(id);
+        if(!optionalSerieEntity.isPresent()) throw new RuntimeException("La serie con el id: " + id + " no existe");
+        return optionalSerieEntity;
     }
 
-    @GetMapping
-    public ResponseEntity<Iterable<SerieEntity>> obtenerTodasLasSeries() {
-        Iterable<SerieEntity> series = serieRepository.findAll();
-        return ResponseEntity.ok(series);
+    @GetMapping("/")
+    public List<SerieEntity> getSerie() {
+        return serieService.getAllSeries();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SerieEntity> actualizarSerie(@PathVariable long id, @RequestBody SerieEntity serieEntity) {
-        SerieEntity serieActualizada = serieRepository.findById(id).orElse(null);
-        serieActualizada.setTitulo(serieEntity.getTitulo());
-        serieActualizada.setAnio(serieEntity.getAnio());
-        serieActualizada.setDescripcion(serieEntity.getDescripcion());
-        serieRepository.save(serieActualizada);
-        return ResponseEntity.ok(serieActualizada);
+    public SerieEntity updateSerie(@PathVariable Long id, @RequestBody SerieEntity serieEntity) {
+        return serieService.updateSeries(id, serieEntity);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarSerie(@PathVariable long id) {
-        serieRepository.deleteById(id);
-        return ResponseEntity.ok(null);
+    public void deleteSerie(@PathVariable long id) {
+        serieService.deleteSeries(id);
     }
 }

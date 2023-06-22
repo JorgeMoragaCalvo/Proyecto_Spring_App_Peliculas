@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Table(name = "usuario")
 @Data
@@ -27,15 +25,4 @@ public class UsuarioEntity {
     private String contrasena;
     @Column(name = "telefono")
     private String telefono;
-
-//    @ManyToMany
-//    @JoinTable(name = "usuario_serie",
-//        joinColumns = @JoinColumn(name = "idUsuario"),
-//        inverseJoinColumns = @JoinColumn(name = "idSerie"))
-//    private List<SerieEntity> series;
-
-//    @ManyToOne
-//    @JoinColumn(name = "idTipoUsuario")
-//    private TipoUsuarioEntity tipoUsuario;
-
 }

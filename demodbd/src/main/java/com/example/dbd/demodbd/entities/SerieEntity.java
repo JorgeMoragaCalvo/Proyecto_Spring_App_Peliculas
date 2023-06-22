@@ -1,16 +1,14 @@
 package com.example.dbd.demodbd.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "serie")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SerieEntity {
@@ -18,13 +16,72 @@ public class SerieEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private long idSerie;
+
+    @Column(name = "titulo")
     private String titulo;
+    @Column(name = "descripcion")
     private String descripcion;
+    @Column(name = "anio")
     private int anio;
 
-//    @ManyToMany(mappedBy = "series")
-//    private List<UsuarioEntity> usuarios;
+    @ManyToOne()
+    @JoinColumn(name = "clasificacion_id")
+    private ClasificacionEntity clasificacionEntity;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TemporadaEntity> temporadas = new ArrayList<>();
+    @JsonBackReference
+    public ClasificacionEntity getClasificacionEntity() {
+        return clasificacionEntity;
+    }
+
+    public void setClasificacionEntity(ClasificacionEntity clasificacionEntity) {
+        this.clasificacionEntity = clasificacionEntity;
+    }
+
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "serieEntity"
+    )
+    private List<TemporadaEntity> temporadaEntities;
+
+    @JsonManagedReference
+    public List<TemporadaEntity> getTemporadaEntities() {
+        return temporadaEntities;
+    }
+
+    public void setTemporadaEntities(List<TemporadaEntity> temporadaEntities) {
+        this.temporadaEntities = temporadaEntities;
+    }
+
+    public long getIdSerie() {
+        return idSerie;
+    }
+
+    public void setIdSerie(long idSerie) {
+        this.idSerie = idSerie;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
 }

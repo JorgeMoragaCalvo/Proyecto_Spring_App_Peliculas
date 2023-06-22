@@ -5,6 +5,9 @@ import com.example.dbd.demodbd.repositories.CapituloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CapituloService {
     private final CapituloRepository capituloRepository;
@@ -14,29 +17,26 @@ public class CapituloService {
         this.capituloRepository = capituloRepository;
     }
 
-    public CapituloEntity crearCapitulo(CapituloEntity capitulo){
-        return capituloRepository.save(capitulo);
+    public CapituloEntity createCapitulos(CapituloEntity capituloEntity){
+        return capituloRepository.save(capituloEntity);
     }
 
-    public CapituloEntity obtenerCapituloPorId(long id){
-        return capituloRepository.findById(id).orElse(null);
+    public List<CapituloEntity> getAllCapitulos(){
+        return (List<CapituloEntity>)capituloRepository.findAll();
     }
 
-    public Iterable<CapituloEntity> obtenerTodosLosCapitulos(){
-        return capituloRepository.findAll();
+    public Optional<CapituloEntity> getAllCapitulosById(Long id){
+        return capituloRepository.findById(id);
     }
 
-    public CapituloEntity actualizarCapitulo(long id, CapituloEntity capitulo){
-        CapituloEntity capituloEntity = capituloRepository.findById(id).orElse(null);
-        capituloEntity.setTitulo(capitulo.getTitulo());
-        capituloEntity.setNumero(capitulo.getNumero());
-        capituloEntity.setDuracion(capitulo.getDuracion());
-        capituloEntity.setArchivo(capitulo.getArchivo());
-        capituloEntity.setNombre_archivo(capitulo.getNombre_archivo());
-        return capituloRepository.save(capitulo);
+    public CapituloEntity updateCapitulos(Long id, CapituloEntity capituloEntity){
+        if(!capituloRepository.existsById(id)) throw new RuntimeException("No existe el capitulo");
+        capituloEntity.setIdCapitulo(id);
+        return capituloRepository.save(capituloEntity);
     }
 
-    public void eliminarCapitulo(long id){
+    public void deleteCapitulos(Long id) {
         capituloRepository.deleteById(id);
     }
+
 }

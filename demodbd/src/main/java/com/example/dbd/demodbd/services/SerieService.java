@@ -5,6 +5,9 @@ import com.example.dbd.demodbd.repositories.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class SerieService{
     private final SerieRepository serieRepository;
@@ -14,27 +17,25 @@ public class SerieService{
         this.serieRepository = serieRepository;
     }
 
-    public SerieEntity crearSeries(SerieEntity serie){
-        return serieRepository.save(serie);
+    public SerieEntity createSeries(SerieEntity serieEntity){
+        return serieRepository.save(serieEntity);
     }
 
-    public SerieEntity obtenerSeriePorId(Long id){
-        return serieRepository.findById(id).orElse(null);
+    public Optional<SerieEntity> getAllSeriesById(Long id){
+        return serieRepository.findById(id);
     }
 
-    public Iterable<SerieEntity> obtenerTodasLasSeries(){
-        return serieRepository.findAll();
+    public List<SerieEntity> getAllSeries(){
+        return (List<SerieEntity>) serieRepository.findAll();
     }
 
-    public SerieEntity actualizarSerie(long id, SerieEntity serie){
-        SerieEntity serieEntity = serieRepository.findById(id).orElse(null);
-        serieEntity.setTitulo(serie.getTitulo());
-        serieEntity.setDescripcion(serie.getDescripcion());
-        serieEntity.setAnio(serie.getAnio());
-        return serieRepository.save(serie);
+    public SerieEntity updateSeries(long id, SerieEntity serieEntity){
+        if(!serieRepository.existsById(id)) throw new RuntimeException("No existe la serie");
+        serieEntity.setIdSerie(id);
+        return serieRepository.save(serieEntity);
     }
 
-    public void eliminarSerie(long id){
+    public void deleteSeries(long id){
         serieRepository.deleteById(id);
     }
 }

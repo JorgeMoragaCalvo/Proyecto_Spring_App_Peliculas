@@ -7,6 +7,7 @@ import org.springframework.boot.context.config.ConfigDataResourceNotFoundExcepti
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PeliculaService {
@@ -17,31 +18,25 @@ public class PeliculaService {
         this.peliculaRepository = peliculaRepository;
     }
 
-    public PeliculaEntity crearPelicula(PeliculaEntity pelicula) {
-        return peliculaRepository.save(pelicula);
+    public PeliculaEntity createPeliculas(PeliculaEntity peliculaEntity){
+        return peliculaRepository.save(peliculaEntity);
     }
 
-    public PeliculaEntity obtenerPelicula(long id) {
-        return peliculaRepository.findById(id).orElse(null);
+    public List<PeliculaEntity> getAllPeliculas(){
+        return (List<PeliculaEntity>)peliculaRepository.findAll();
     }
 
-    public Iterable<PeliculaEntity> obtenerTodasLasPeliculas() {
-        return peliculaRepository.findAll();
+    public Optional<PeliculaEntity> getAllPeliculasById(Long id){
+        return peliculaRepository.findById(id);
     }
 
-    public PeliculaEntity actualizaPelicula(long id, PeliculaEntity pelicula) {
-        PeliculaEntity peliculaActual = peliculaRepository.findById(id).orElse(null);
-
-        peliculaActual.setTitulo(pelicula.getTitulo());
-        peliculaActual.setAnio(pelicula.getAnio());
-        peliculaActual.setDescripcion(pelicula.getDescripcion());
-        peliculaActual.setDuracion(pelicula.getDuracion());
-        peliculaActual.setArchivo(pelicula.getArchivo());
-        peliculaActual.setNombre_archivo(pelicula.getNombre_archivo());
-        return peliculaRepository.save(peliculaActual);
+    public PeliculaEntity updatePeliculas(Long id, PeliculaEntity peliculaEntity){
+        if(!peliculaRepository.existsById(id)) throw new RuntimeException("No existe la pelicula");
+        peliculaEntity.setId_pelicula(id);
+        return peliculaRepository.save(peliculaEntity);
     }
 
-    public void eliminarPelicula(long id) {
+    public void deletePeliculas(Long id){
         peliculaRepository.deleteById(id);
     }
 }
