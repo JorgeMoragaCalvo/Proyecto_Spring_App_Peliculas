@@ -18,29 +18,29 @@ public class PeliculaController {
         this.peliculaService = peliculaService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/createPelicula/")
     public PeliculaEntity createPelicula(@RequestBody PeliculaEntity peliculaEntity){
         return peliculaService.createPeliculas(peliculaEntity);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getPeliculas/")
     public List<PeliculaEntity> getPeliculas(){
         return peliculaService.getAllPeliculas();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getPeliculaById/{id}")
     public Optional<PeliculaEntity> getPeliculaById(@PathVariable(value = "id") Long id){
         Optional<PeliculaEntity> optionalPeliculaEntity = peliculaService.getAllPeliculasById(id);
         if(!optionalPeliculaEntity.isPresent()) throw new RuntimeException("La Pelicula con el id: " + id + " no existe");
         return optionalPeliculaEntity;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updatePelicula/{id}")
     public PeliculaEntity updatePelicula(@PathVariable(value = "id") Long id, @RequestBody PeliculaEntity peliculaEntity){
         return peliculaService.updatePeliculas(id, peliculaEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletePelicula/{id}")
     public void deletePelicula(@PathVariable(value = "id") Long id){
         peliculaService.deletePeliculas(id);
     }

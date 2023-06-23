@@ -20,29 +20,29 @@ public class SerieController {
         this.serieService = serieService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/createSerie/")
     public SerieEntity createSerie(@RequestBody SerieEntity serieEntity) {
         return serieService.createSeries(serieEntity);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getSerieById/{id}")
     public Optional<SerieEntity> getSerieById(@PathVariable long id){
         Optional<SerieEntity> optionalSerieEntity = serieService.getAllSeriesById(id);
         if(!optionalSerieEntity.isPresent()) throw new RuntimeException("La serie con el id: " + id + " no existe");
         return optionalSerieEntity;
     }
 
-    @GetMapping("/")
+    @GetMapping("/getSerie/")
     public List<SerieEntity> getSerie() {
         return serieService.getAllSeries();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateSerie/{id}")
     public SerieEntity updateSerie(@PathVariable Long id, @RequestBody SerieEntity serieEntity) {
         return serieService.updateSeries(id, serieEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteSerie/{id}")
     public void deleteSerie(@PathVariable long id) {
         serieService.deleteSeries(id);
     }

@@ -18,29 +18,29 @@ public class CapituloController {
         this.capituloService = capituloService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/createCapitulo/")
     public CapituloEntity createCapitulo(@RequestBody CapituloEntity capituloEntity){
         return capituloService.createCapitulos(capituloEntity);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getCapitulos/")
     public List<CapituloEntity> getCapitulos(){
         return capituloService.getAllCapitulos();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getCapituloById/{id}")
     public Optional<CapituloEntity> getCapituloById(@PathVariable(value = "id") Long id){
         Optional<CapituloEntity> optionalCapituloEntity = capituloService.getAllCapitulosById(id);
         if(!optionalCapituloEntity.isPresent()) throw new RuntimeException("El Capitulo con el id: " + id + " no existe");
         return optionalCapituloEntity;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateCapitulo/{id}")
     public CapituloEntity updateCapitulo(@PathVariable(value = "id") Long id, @RequestBody CapituloEntity capituloEntity){
         return capituloService.updateCapitulos(id, capituloEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteCapitulo/{id}")
     public void deleteCapitulo(@PathVariable(value = "id") Long id){
         capituloService.deleteCapitulos(id);
     }

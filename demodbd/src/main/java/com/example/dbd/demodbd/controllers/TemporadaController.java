@@ -20,29 +20,29 @@ public class TemporadaController {
         this.temporadaService = temporadaService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/createTemporada/")
     public TemporadaEntity createTemporada(@RequestBody TemporadaEntity temporadaEntity) {
         return temporadaService.createTemporadas(temporadaEntity);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getTemporadaById/{id}")
     public Optional<TemporadaEntity> getTemporadaById(@PathVariable long id){
         Optional<TemporadaEntity> optionalTemporadaEntity = temporadaService.getTemporadasById(id);
         if(!optionalTemporadaEntity.isPresent()) throw new RuntimeException("La Temporada con el id: " + id + " no existe");
         return optionalTemporadaEntity;
     }
 
-    @GetMapping("/")
+    @GetMapping("/getTemporadas/")
     public List<TemporadaEntity> getTemporadas(){
         return temporadaService.getAllTemporadas();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateTemporada/{id}")
     public TemporadaEntity updateTemporada(@PathVariable(value = "id") Long id, @RequestBody TemporadaEntity temporadaEntity) {
         return temporadaService.updateTemporadas(id, temporadaEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteTemporada/{id}")
     public void deleteTemporada(@PathVariable(value = "id") Long id) {
         temporadaService.deleteTemporadas(id);
     }

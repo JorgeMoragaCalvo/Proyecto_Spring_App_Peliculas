@@ -17,29 +17,29 @@ public class ClasificacionController {
         this.clasificacionService = clasificacionService;
     }
 
-    @PostMapping("/")
+    @PostMapping("/createClasificacion/")
     public ClasificacionEntity createClasificacion(@RequestBody ClasificacionEntity clasificacionEntity){
         return clasificacionService.createClasificaciones(clasificacionEntity);
     }
 
-    @GetMapping("/")
+    @GetMapping("/getClasificaciones/")
     public List<ClasificacionEntity> getClasificaciones(){
         return clasificacionService.getAllClasificaciones();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getClasificacionById/{id}")
     public Optional<ClasificacionEntity> getClasificacionById(@PathVariable(value = "id") Long id){
         Optional<ClasificacionEntity> optionalClasificacionEntity = clasificacionService.getAllClasificacionesById(id);
         if(!optionalClasificacionEntity.isPresent()) throw new RuntimeException("La Clasificacion con el id: " + id + " no existe");
         return optionalClasificacionEntity;
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateClasificacion/{id}")
     public ClasificacionEntity updateClasificacion(@PathVariable(value = "id") Long id, @RequestBody ClasificacionEntity clasificacionEntity){
         return clasificacionService.updateClasificaciones(id, clasificacionEntity);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteClasificacion/{id}")
     public void deleteClasificacion(@PathVariable(value = "id") Long id){
         clasificacionService.deleteClasificaciones(id);
     }
