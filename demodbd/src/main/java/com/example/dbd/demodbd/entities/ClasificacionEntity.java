@@ -48,6 +48,7 @@ public class ClasificacionEntity {
     )
     private List<SerieEntity> serieEntities;
 
+
     @JsonManagedReference
     public List<SerieEntity> getSerieEntities() {
         return serieEntities;

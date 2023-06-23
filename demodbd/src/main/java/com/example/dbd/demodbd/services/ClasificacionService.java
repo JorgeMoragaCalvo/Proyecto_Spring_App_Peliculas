@@ -2,6 +2,7 @@ package com.example.dbd.demodbd.services;
 
 import com.example.dbd.demodbd.entities.ClasificacionEntity;
 import com.example.dbd.demodbd.repositories.ClasificacionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.Optional;
 public class ClasificacionService {
 
     public final ClasificacionRepository clasificacionRepository;
+
+    @Autowired
     public ClasificacionService(ClasificacionRepository clasificacionRepository){
         this.clasificacionRepository = clasificacionRepository;
     }

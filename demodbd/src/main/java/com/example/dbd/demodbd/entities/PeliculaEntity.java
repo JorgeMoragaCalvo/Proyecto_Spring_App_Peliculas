@@ -1,10 +1,12 @@
 package com.example.dbd.demodbd.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,6 +32,7 @@ public class PeliculaEntity {
     @JoinColumn(name = "clasificacion_id")
     private ClasificacionEntity clasificacionEntity;
 
+
     @JsonBackReference
     public ClasificacionEntity getClasificacionEntity() {
         return clasificacionEntity;
@@ -38,6 +41,21 @@ public class PeliculaEntity {
     public void setClasificacionEntity(ClasificacionEntity clasificacionEntity) {
         this.clasificacionEntity = clasificacionEntity;
     }
+
+
+    @ManyToOne()
+    @JoinColumn(name = "categoria_id")
+    private CategoriaEntity categoriaEntity;
+
+    /*
+    @JsonBackReference
+    public CategoriaEntity getCategoriaEntity() {
+        return categoriaEntity;
+    }
+
+    public void setCategoriaEntity(CategoriaEntity categoriaEntity) {
+        this.categoriaEntity = categoriaEntity;
+    }*/
 
     public Long getId_pelicula() {
         return id_pelicula;
