@@ -1,23 +1,78 @@
 package com.example.dbd.demodbd.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Entity
-@Data
-@NoArgsConstructor
+import java.util.List;
+
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Entity
 public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private long idUsuario;
-
+    private Long idUsuario;
     private String nombre;
     private String apellido;
     private String nombreUsuario;
     private String contrasena;
     private String telefono;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipoUsuario_id")
+    private TipoUsuarioEntity tipoUsuarioEntity;
+
+    @OneToMany(mappedBy = "usuarioEntity")
+    private List<UsuarioSuscripcionEntity> usuarioSuscripciones;
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    public String getContrasena() {
+        return contrasena;
+    }
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+    public String getTelefono() {
+        return telefono;
+    }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @JsonBackReference
+    public TipoUsuarioEntity getTipoUsuarioEntity() {
+        return tipoUsuarioEntity;
+    }
+
+    public void setTipoUsuarioEntity(TipoUsuarioEntity tipoUsuarioEntity) {
+        this.tipoUsuarioEntity = tipoUsuarioEntity;
+    }
 }

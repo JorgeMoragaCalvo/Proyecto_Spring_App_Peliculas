@@ -2,31 +2,43 @@ package com.example.dbd.demodbd.controllers;
 
 import com.example.dbd.demodbd.entities.UsuarioEntity;
 import com.example.dbd.demodbd.services.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
-    private UsuarioService usuarioService;
+import java.util.List;
+import java.util.Optional;
 
-    @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
+@RestController
+@RequestMapping("/demodbd/usuario")
+public class UsuarioController {
+    public final UsuarioService usuarioService;
+    public UsuarioController(UsuarioService usuarioService){
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/crearUsuario/")
-    public UsuarioEntity crearUsuario(@RequestBody UsuarioEntity usuarioEntity) {
-        return usuarioService.saveUsuario(usuarioEntity);
+    @PostMapping("/createUsuario/")
+    public UsuarioEntity createUsuario(@RequestBody UsuarioEntity usuarioEntity){
+        return usuarioService.createUsuarios(usuarioEntity);
     }
 
-    @GetMapping("/obtenerUsuarioById/{id}")
-    public UsuarioEntity obtenerUsuarioById(@PathVariable Long id) {
-        return usuarioService.getUsuarioById(id);
+    @GetMapping("/getUsuarios/")
+    public List<UsuarioEntity> getUsuarios(){
+        return usuarioService.getAllUsuarios();
     }
 
-    @DeleteMapping("/eliminarUsuario/{id}")
-    public void eliminarUsuario(@PathVariable Long id) {
-        usuarioService.deleteUsuario(id);
+    @GetMapping("/getUsuarioById/{id}")
+    public Optional<UsuarioEntity> getUsuarioById(@PathVariable(value = "id") Long id){
+        Optional<UsuarioEntity> optionalUsuarioEntity = usuarioService.getAllUsuariosById(id);
+        if(!optionalUsuarioEntity.isPresent()) throw new RuntimeException("El Usuario con el id: " + id + " no existe");
+        return optionalUsuarioEntity;
+    }
+
+    @PutMapping("/updateUsuario/{id}")
+    public UsuarioEntity updateUsuario(@PathVariable(value = "id") Long id, @RequestBody UsuarioEntity usuarioEntity){
+        return usuarioService.updateUsuarios(id, usuarioEntity);
+    }
+
+    @DeleteMapping("/deleteUsuario/{id}")
+    public void deleteUsuario(@PathVariable(value = "id") Long id){
+        usuarioService.deleteUsuarios(id);
     }
 }

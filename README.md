@@ -135,3 +135,95 @@ PASO 5: Crear Capitulo
         "idTemporada": 1  
     }  
 }
+
+Caso de prueba para TipoUsuario:
+
+{
+  "idTipoUsuario": 0,
+  "nombre": "Administrador",
+  "usuarioEntities": []
+}
+
+{
+  "idTipoUsuario": 0,
+  "nombre": "Usuario",
+  "usuarioEntities": []
+}
+
+Caso de prueba para Usuario:
+
+{
+  "idUsuario": 0,
+  "nombre": "Jorge",
+  "apellido": "Moraga",
+  "nombreUsuario": "jmoraga",
+  "contrasena": "789456",
+  "telefono": "982832417",
+  "tipoUsuarioEntity": {
+    "idTipoUsuario": 1,
+    "nombre": "string",
+    "usuarioEntities": []
+  }
+}
+
+{
+  "idUsuario": 0,
+  "nombre": "Nicolas",
+  "apellido": "Carcamo",
+  "nombreUsuario": "ncarcamo",
+  "contrasena": "123456",
+  "telefono": "964682483",
+  "tipoUsuarioEntity": {
+    "idTipoUsuario": 2,
+    "nombre": "string",
+    "usuarioEntities": []
+  }
+}
+
+Caso de prueba para TipoSuscripcion:
+
+{
+  "idTipoSuscripcion": 0,
+  "nombre": "Mensual",
+  "descripcion": "Se paga mensualmente",
+  "suscripcionEntities": []
+}
+
+{
+  "idTipoSuscripcion": 0,
+  "nombre": "Anual",
+  "descripcion": "Se paga anualmente",
+  "suscripcionEntities": []
+}
+
+Caso de prueba para Suscripcion:
+
+{
+  "idSuscripcion": 0,
+  "fechaInicio": "2023-06-24T03:37:54.856Z",
+  "fechaFin": "2023-06-24T03:37:54.856Z",
+  "numeroTarjeta": "3144356546",
+  "diaFacturacion": 5,
+  "tipoSuscripcionEntity": {
+    "idTipoSuscripcion": 1,
+    "nombre": "string",
+    "descripcion": "string",
+    "suscripcionEntities": [
+    ]
+  }
+}
+
+{
+  "idSuscripcion": 0,
+  "fechaInicio": "2023-06-24T03:37:54.856Z",
+  "fechaFin": "2023-06-24T03:37:54.856Z",
+  "numeroTarjeta": "8746879856",
+  "diaFacturacion": 10,
+  "tipoSuscripcionEntity": {
+    "idTipoSuscripcion": 2,
+    "nombre": "string",
+    "descripcion": "string",
+    "suscripcionEntities": [
+    ]
+  }
+}
