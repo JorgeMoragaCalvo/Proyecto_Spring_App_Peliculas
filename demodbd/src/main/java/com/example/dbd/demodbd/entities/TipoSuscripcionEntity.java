@@ -1,12 +1,9 @@
 package com.example.dbd.demodbd.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,13 +16,6 @@ public class TipoSuscripcionEntity {
     private Integer idTipoSuscripcion;
     private String nombre;
     private String descripcion;
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "tipoSuscripcionEntity"
-    )
-    private List<SuscripcionEntity> suscripcionEntities;
 
     public Integer getIdTipoSuscripcion() {
         return idTipoSuscripcion;
@@ -44,13 +34,6 @@ public class TipoSuscripcionEntity {
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    @JsonManagedReference
-    public List<SuscripcionEntity> getSuscripcionEntities() {
-        return suscripcionEntities;
-    }
-    public void setSuscripcionEntities(List<SuscripcionEntity> suscripcionEntities) {
-        this.suscripcionEntities = suscripcionEntities;
     }
 
 }

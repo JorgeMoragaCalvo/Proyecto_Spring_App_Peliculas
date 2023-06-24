@@ -19,13 +19,6 @@ public class TipoUsuarioEntity {
     private Integer idTipoUsuario;
     private String nombre;
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "tipoUsuarioEntity"
-    )
-    private List<UsuarioEntity> usuarioEntities;
-
     public Integer getIdTipoUsuario() {
         return idTipoUsuario;
     }
@@ -37,13 +30,6 @@ public class TipoUsuarioEntity {
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    @JsonManagedReference
-    public List<UsuarioEntity> getUsuarioEntities() {
-        return usuarioEntities;
-    }
-    public void setUsuarioEntities(List<UsuarioEntity> usuarioEntities) {
-        this.usuarioEntities = usuarioEntities;
     }
 
 }

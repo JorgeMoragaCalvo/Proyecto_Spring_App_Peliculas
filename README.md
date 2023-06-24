@@ -1,6 +1,7 @@
 # dbddemo
 
 Casos de prueba para la base de datos
+
 PASO 1: crear clasificaciones  
 {  
 "codigo": "clas-01",  
@@ -13,17 +14,29 @@ PASO 1: crear clasificaciones
 "descripcion": "mayores 14"  
 }  
 
+Paso 1.1: Crear productora
+
+{
+  "nombre": "LionsGate"
+}
+
+{
+  "nombre": "Warner Bros. Entertainment"
+}
 
 PASO 2: crear peliculas  
-{  
+{
 "titulo": "Espias",  
 "anio": 2001,  
 "descripcion": "pelicula accion",  
 "duracion": "120m",  
-"nombre_archivo": "espias.mp4",  
-    "clasificacionEntity": {  
-        "idClasificacion": 1  
-    }
+"nombre_archivo": "espias.mp4", 
+  "clasificacionEntity": {
+    "idClasificacion": 1
+  },
+  "productoraEntity": {
+    "idProductora": 1
+  }
 }
 
 
@@ -35,6 +48,9 @@ PASO 2: crear peliculas
 "nombre_archivo": "terminator.mp4",  
     "clasificacionEntity": {  
         "idClasificacion": 1
+    },
+    "productoraEntity": {
+	"idProductora": 2
     }  
 }  
 
@@ -47,7 +63,10 @@ PASO 2: crear peliculas
 "nombre_archivo": "pielfria.mp4",  
     "clasificacionEntity": {  
         "idClasificacion": 2  
-    }
+    },
+    "productoraEntity": {
+	"idProductora": 2
+    } 
 }
 
 
@@ -59,7 +78,10 @@ PASO 2: crear peliculas
 "nombre_archivo": "piratas.mp4",  
     "clasificacionEntity": {  
         "idClasificacion": 2  
-    }  
+    },
+	"productoraEntity": {
+		"idProductora": 2
+	}  
 }  
 
 
@@ -70,7 +92,10 @@ PASO 3: Crear Series
 "anio": 2015,  
     "clasificacionEntity": {  
         "idClasificacion": 1  
-    }  
+    },
+	"productoraEntity": {
+		"idProductora": 1
+	} 
 }
 
 
@@ -80,7 +105,10 @@ PASO 3: Crear Series
 "anio": 2021,  
     "clasificacionEntity": {  
         "idClasificacion": 2
-    }  
+    },
+	"productoraEntity": {
+		"idProductora": 2
+	}   
 }  
 
 
@@ -139,44 +167,34 @@ PASO 5: Crear Capitulo
 Caso de prueba para TipoUsuario:
 
 {
-  "idTipoUsuario": 0,
-  "nombre": "Administrador",
-  "usuarioEntities": []
+  "nombre": "Administrador"
 }
 
 {
-  "idTipoUsuario": 0,
-  "nombre": "Usuario",
-  "usuarioEntities": []
+  "nombre": "Usuario"
 }
 
 Caso de prueba para Usuario:
 
 {
-  "idUsuario": 0,
   "nombre": "Jorge",
   "apellido": "Moraga",
   "nombreUsuario": "jmoraga",
   "contrasena": "789456",
   "telefono": "982832417",
   "tipoUsuarioEntity": {
-    "idTipoUsuario": 1,
-    "nombre": "string",
-    "usuarioEntities": []
+    "idTipoUsuario": 1
   }
 }
 
 {
-  "idUsuario": 0,
   "nombre": "Nicolas",
   "apellido": "Carcamo",
   "nombreUsuario": "ncarcamo",
   "contrasena": "123456",
   "telefono": "964682483",
   "tipoUsuarioEntity": {
-    "idTipoUsuario": 2,
-    "nombre": "string",
-    "usuarioEntities": []
+    "idTipoUsuario": 2
   }
 }
 

@@ -2,9 +2,11 @@ package com.example.dbd.demodbd.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class PeliculaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +27,18 @@ public class PeliculaEntity {
     private String duracion;
     private String nombre_archivo;
 
-    @ManyToOne()
-    @JoinColumn(name = "clasificacion_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_clasificacion")
     private ClasificacionEntity clasificacionEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_productora")
+    private ProductoraEntity productoraEntity;
 
-    @JsonBackReference
+    @JsonIgnore
+    @ManyToMany(mappedBy = "peliculaEntities")
+    private List<CategoriaEntity> categoriaEntities;
+
     public ClasificacionEntity getClasificacionEntity() {
         return clasificacionEntity;
     }
@@ -38,11 +47,6 @@ public class PeliculaEntity {
         this.clasificacionEntity = clasificacionEntity;
     }
 
-    @ManyToOne()
-    @JoinColumn(name = "productora_id")
-    private ProductoraEntity productoraEntity;
-
-    @JsonBackReference
     public ProductoraEntity getProductoraEntity() {
         return productoraEntity;
     }
@@ -50,26 +54,6 @@ public class PeliculaEntity {
     public void setProductoraEntity(ProductoraEntity productoraEntity) {
         this.productoraEntity = productoraEntity;
     }
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "peliculaEntities")
-    private List<CategoriaEntity> categoriaEntities;
-
-    /*
-    @ManyToOne()
-    @JoinColumn(name = "categoria_id")
-    private CategoriaEntity categoriaEntity;
-    */
-
-    /*
-    @JsonBackReference
-    public CategoriaEntity getCategoriaEntity() {
-        return categoriaEntity;
-    }
-
-    public void setCategoriaEntity(CategoriaEntity categoriaEntity) {
-        this.categoriaEntity = categoriaEntity;
-    }*/
 
     public Long getId_pelicula() {
         return id_pelicula;

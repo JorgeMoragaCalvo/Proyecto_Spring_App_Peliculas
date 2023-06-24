@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class TemporadaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,22 +31,6 @@ public class TemporadaEntity {
     @JsonBackReference
     public SerieEntity getSerieEntity() {
         return serieEntity;
-    }
-
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "temporadaEntity"
-    )
-    private List<CapituloEntity> capituloEntities;
-
-    @JsonManagedReference
-    public List<CapituloEntity> getCapituloEntities() {
-        return capituloEntities;
-    }
-
-    public void setCapituloEntities(List<CapituloEntity> capituloEntities) {
-        this.capituloEntities = capituloEntities;
     }
 
     public void setSerieEntity(SerieEntity serieEntity) {

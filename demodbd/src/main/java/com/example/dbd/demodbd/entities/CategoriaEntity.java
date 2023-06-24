@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 public class CategoriaEntity {
 
     @Id

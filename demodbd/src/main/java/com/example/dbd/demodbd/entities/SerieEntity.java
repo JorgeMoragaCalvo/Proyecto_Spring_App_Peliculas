@@ -1,16 +1,16 @@
 package com.example.dbd.demodbd.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class SerieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +21,14 @@ public class SerieEntity {
     private String descripcion;
     private int anio;
 
-    @ManyToOne()
-    @JoinColumn(name = "clasificacion_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_clasificacion")
     private ClasificacionEntity clasificacionEntity;
 
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_productora")
+    private ProductoraEntity productoraEntity;
+
     public ClasificacionEntity getClasificacionEntity() {
         return clasificacionEntity;
     }
@@ -34,27 +37,6 @@ public class SerieEntity {
         this.clasificacionEntity = clasificacionEntity;
     }
 
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "serieEntity"
-    )
-    private List<TemporadaEntity> temporadaEntities;
-
-    @JsonManagedReference
-    public List<TemporadaEntity> getTemporadaEntities() {
-        return temporadaEntities;
-    }
-
-    public void setTemporadaEntities(List<TemporadaEntity> temporadaEntities) {
-        this.temporadaEntities = temporadaEntities;
-    }
-
-    @ManyToOne()
-    @JoinColumn(name = "productora_id")
-    private ProductoraEntity productoraEntity;
-
-    @JsonBackReference
     public ProductoraEntity getProductoraEntity() {
         return productoraEntity;
     }
