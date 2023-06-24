@@ -21,13 +21,23 @@ public class CategoriaEntity {
     @Column(name = "nombre")
     private String nombre;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "pelicula_categoria",
+            joinColumns = @JoinColumn(name = "categoria_id"),
+            inverseJoinColumns = @JoinColumn(name = "pelicula_id")
+    )
+    private List<PeliculaEntity> peliculaEntities;
 
+
+    /*
     @OneToMany(
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "categoriaEntity"
     )
     private List<PeliculaEntity> peliculaEntities;
+    */
 
     /*
     @JsonManagedReference
