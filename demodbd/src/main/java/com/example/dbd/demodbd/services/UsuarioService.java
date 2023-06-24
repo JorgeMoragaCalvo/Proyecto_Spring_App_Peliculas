@@ -1,19 +1,19 @@
 package com.example.dbd.demodbd.services;
 
-import com.example.dbd.demodbd.entities.ClasificacionEntity;
-import com.example.dbd.demodbd.entities.UsuarioEntity;
-import com.example.dbd.demodbd.repositories.ClasificacionRepository;
+import com.example.dbd.demodbd.entities.*;
+import com.example.dbd.demodbd.repositories.SuscripcionRepository;
 import com.example.dbd.demodbd.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
-
+    @Autowired
+    private SuscripcionRepository suscripcionRepository;
     public final UsuarioRepository usuarioRepository;
 
     @Autowired
@@ -43,4 +43,25 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    public UsuarioEntity assignUsuarioToSuscripcion(Long id_usuario, Long id_suscripcion){
+        List<SuscripcionEntity> suscripcion = null;
+        UsuarioEntity usuarioEntity = usuarioRepository.findById(id_usuario).get();
+        SuscripcionEntity suscripcionEntity = suscripcionRepository.findById(id_suscripcion).get();
+        suscripcion = usuarioEntity.getSuscripcionEntities();
+        suscripcion.add(suscripcionEntity);
+        return usuarioRepository.save(usuarioEntity);
+    }
+
+    public String login(String nombreUsuario, String contrasena){
+        List<UsuarioEntity> usuarios = (List<UsuarioEntity>)usuarioRepository.findAll();
+        for (UsuarioEntity usuario : usuarios) {
+            if (usuario.getNombreUsuario().equals(nombreUsuario)) {
+                if(usuario.getContrasena().equals(contrasena))
+                    return "Login exitoso";
+                else
+                    return "Contraseña incorrecta";
+            }
+        }
+        return "Usuario no encontrado";
+    }
 }

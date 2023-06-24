@@ -1,5 +1,6 @@
 package com.example.dbd.demodbd.controllers;
 
+import com.example.dbd.demodbd.entities.CategoriaEntity;
 import com.example.dbd.demodbd.entities.UsuarioEntity;
 import com.example.dbd.demodbd.services.UsuarioService;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,17 @@ public class UsuarioController {
     @DeleteMapping("/deleteUsuario/{id}")
     public void deleteUsuario(@PathVariable(value = "id") Long id){
         usuarioService.deleteUsuarios(id);
+    }
+
+    @PutMapping("/assignUsuarioToSuscripcion/{id_usuario}/suscripcion/{id_suscripcion}")
+    public UsuarioEntity assignUsuarioToSuscripcion(
+            @PathVariable(value = "id_usuario") Long id_usuario,
+            @PathVariable(value = "id_suscripcion") Long id_suscripcion){
+        return usuarioService.assignUsuarioToSuscripcion(id_usuario, id_suscripcion);
+    }
+
+    @GetMapping("/loginByNombreUsuario/{nombreUsuario}/contrasena/{contrasena}")
+    public String login(@PathVariable(value = "nombreUsuario") String nombreUsuario,@PathVariable(value = "contrasena") String contrasena){
+        return usuarioService.login(nombreUsuario,contrasena);
     }
 }

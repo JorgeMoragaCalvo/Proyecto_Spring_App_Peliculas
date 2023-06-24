@@ -27,8 +27,17 @@ public class UsuarioEntity {
     @JoinColumn(name = "tipoUsuario_id")
     private TipoUsuarioEntity tipoUsuarioEntity;
 
-    @OneToMany(mappedBy = "usuarioEntity")
-    private List<UsuarioSuscripcionEntity> usuarioSuscripciones;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "usuario_suscripcion",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "suscripcion_id")
+    )
+    private List<SuscripcionEntity> suscripcionEntities;
+
+    public List<SuscripcionEntity> getSuscripcionEntities() {
+        return suscripcionEntities;
+    }
 
     public Long getIdUsuario() {
         return idUsuario;

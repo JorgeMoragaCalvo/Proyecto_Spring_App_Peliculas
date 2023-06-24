@@ -1,6 +1,7 @@
 package com.example.dbd.demodbd.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -27,8 +28,9 @@ public class SuscripcionEntity {
     @JoinColumn(name = "tipoSuscripcion_id")
     private TipoSuscripcionEntity tipoSuscripcionEntity;
 
-    @OneToMany(mappedBy = "suscripcionEntity")
-    private List<UsuarioSuscripcionEntity> usuarioSuscripciones;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "suscripcionEntities")
+    private List<UsuarioEntity> usuarioEntities;
 
     public Long getIdSuscripcion() {
         return idSuscripcion;
