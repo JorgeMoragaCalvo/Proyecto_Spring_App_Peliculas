@@ -3,7 +3,6 @@ package com.example.dbd.demodbd.services;
 import com.example.dbd.demodbd.entities.PeliculaEntity;
 import com.example.dbd.demodbd.repositories.PeliculaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

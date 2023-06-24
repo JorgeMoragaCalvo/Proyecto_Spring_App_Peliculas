@@ -13,12 +13,11 @@ import java.util.Optional;
 @Service
 public class CategoriaService {
 
-
-
     @Autowired
     private PeliculaRepository peliculaRepository;
 
     public final CategoriaRepository categoriaRepository;
+
     @Autowired
     public CategoriaService(CategoriaRepository categoriaRepository){
         this.categoriaRepository = categoriaRepository;
@@ -43,7 +42,7 @@ public class CategoriaService {
     }
 
     public CategoriaEntity assignPeliculaToCategorias(Long id_categoria, Long id_pelicula){
-        List<PeliculaEntity> peliculas = null;
+        List<PeliculaEntity> peliculas;
         CategoriaEntity categoriaEntity = categoriaRepository.findById(id_categoria).get();
         PeliculaEntity peliculaEntity = peliculaRepository.findById(id_pelicula).get();
         peliculas = categoriaEntity.getPeliculaEntities();
