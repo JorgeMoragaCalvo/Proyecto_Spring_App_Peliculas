@@ -50,6 +50,19 @@ public class SerieEntity {
         this.temporadaEntities = temporadaEntities;
     }
 
+    @ManyToOne()
+    @JoinColumn(name = "productora_id")
+    private ProductoraEntity productoraEntity;
+
+    @JsonBackReference
+    public ProductoraEntity getProductoraEntity() {
+        return productoraEntity;
+    }
+
+    public void setProductoraEntity(ProductoraEntity productoraEntity) {
+        this.productoraEntity = productoraEntity;
+    }
+
     public long getIdSerie() {
         return idSerie;
     }

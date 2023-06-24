@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,6 +26,9 @@ public class SuscripcionEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoSuscripcion_id")
     private TipoSuscripcionEntity tipoSuscripcionEntity;
+
+    @OneToMany(mappedBy = "suscripcionEntity")
+    private List<UsuarioSuscripcionEntity> usuarioSuscripciones;
 
     public Long getIdSuscripcion() {
         return idSuscripcion;

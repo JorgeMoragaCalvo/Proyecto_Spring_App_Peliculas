@@ -31,7 +31,7 @@ public class ClasificacionService {
     }
 
     public ClasificacionEntity updateClasificaciones(Long id, ClasificacionEntity clasificacionEntity){
-        if(!clasificacionRepository.existsById(id)) throw new RuntimeException("No existe la clasficacion");
+        if(!clasificacionRepository.existsById(id)) throw new RuntimeException("No existe la clasificacion");
         clasificacionEntity.setIdClasificacion(id);
         return clasificacionRepository.save(clasificacionEntity);
     }

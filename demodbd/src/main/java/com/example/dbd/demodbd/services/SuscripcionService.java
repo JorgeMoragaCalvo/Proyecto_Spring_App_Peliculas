@@ -31,7 +31,7 @@ public class SuscripcionService {
     }
 
     public SuscripcionEntity updateSuscripciones(Long id, SuscripcionEntity suscripcionEntity){
-        if(!suscripcionRepository.existsById(id)) throw new RuntimeException("No existe la clasficacion");
+        if(!suscripcionRepository.existsById(id)) throw new RuntimeException("No existe la suscripcion");
         suscripcionEntity.setIdSuscripcion(id);
         return suscripcionRepository.save(suscripcionEntity);
     }

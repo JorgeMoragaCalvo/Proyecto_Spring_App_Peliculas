@@ -33,7 +33,7 @@ public class TipoUsuarioService {
     }
 
     public TipoUsuarioEntity updateTiposUsuarios(Integer id, TipoUsuarioEntity tipoUsuarioEntity){
-        if(!tipoUsuarioRepository.existsById(id)) throw new RuntimeException("No existe la clasficacion");
+        if(!tipoUsuarioRepository.existsById(id)) throw new RuntimeException("No existe el tipo usuario");
         tipoUsuarioEntity.setIdTipoUsuario(id);
         return tipoUsuarioRepository.save(tipoUsuarioEntity);
     }

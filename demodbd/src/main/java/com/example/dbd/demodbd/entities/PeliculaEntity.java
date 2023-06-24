@@ -38,6 +38,19 @@ public class PeliculaEntity {
         this.clasificacionEntity = clasificacionEntity;
     }
 
+    @ManyToOne()
+    @JoinColumn(name = "productora_id")
+    private ProductoraEntity productoraEntity;
+
+    @JsonBackReference
+    public ProductoraEntity getProductoraEntity() {
+        return productoraEntity;
+    }
+
+    public void setProductoraEntity(ProductoraEntity productoraEntity) {
+        this.productoraEntity = productoraEntity;
+    }
+
     @JsonIgnore
     @ManyToMany(mappedBy = "peliculaEntities")
     private List<CategoriaEntity> categoriaEntities;

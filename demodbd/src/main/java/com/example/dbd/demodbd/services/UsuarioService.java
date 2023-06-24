@@ -34,7 +34,7 @@ public class UsuarioService {
     }
 
     public UsuarioEntity updateUsuarios(Long id, UsuarioEntity usuarioEntity){
-        if(!usuarioRepository.existsById(id)) throw new RuntimeException("No existe la clasficacion");
+        if(!usuarioRepository.existsById(id)) throw new RuntimeException("No existe el usuario");
         usuarioEntity.setIdUsuario(id);
         return usuarioRepository.save(usuarioEntity);
     }
