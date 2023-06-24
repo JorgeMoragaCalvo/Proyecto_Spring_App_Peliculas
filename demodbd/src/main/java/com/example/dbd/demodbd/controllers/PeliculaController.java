@@ -35,6 +35,13 @@ public class PeliculaController {
         return optionalPeliculaEntity;
     }
 
+    @GetMapping("/getPeliculaByNombre/{nombre}")
+    public PeliculaEntity getPeliculaByNombre(@PathVariable(value = "nombre") String nombre){
+        PeliculaEntity peliculaEntity = peliculaService.findPeliculaByName(nombre);
+        if(!peliculaEntity.equals(nombre)) throw new RuntimeException("La Pelicula con el nombre: " + nombre + " no existe");
+        return peliculaEntity;
+    }
+
     @PutMapping("/updatePelicula/{id}")
     public PeliculaEntity updatePelicula(@PathVariable(value = "id") Long id, @RequestBody PeliculaEntity peliculaEntity){
         return peliculaService.updatePeliculas(id, peliculaEntity);

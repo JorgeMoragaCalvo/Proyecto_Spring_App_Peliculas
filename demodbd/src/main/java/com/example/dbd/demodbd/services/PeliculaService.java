@@ -30,6 +30,15 @@ public class PeliculaService {
         return peliculaRepository.findById(id);
     }
 
+    public PeliculaEntity findPeliculaByName(String name) {
+        List<PeliculaEntity> Allpeliculas = (List<PeliculaEntity>) peliculaRepository.findAll();
+        for (PeliculaEntity peliculaEntity : Allpeliculas) {
+            if (peliculaEntity.getTitulo().equals(name)) return peliculaEntity;
+        }
+        throw new RuntimeException("No existe la pelicula");
+    }
+
+
     public PeliculaEntity updatePeliculas(Long id, PeliculaEntity peliculaEntity){
         if(!peliculaRepository.existsById(id)) throw new RuntimeException("No existe la pelicula");
         peliculaEntity.setId_pelicula(id);
