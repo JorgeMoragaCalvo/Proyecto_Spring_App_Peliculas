@@ -135,3 +135,48 @@ PASO 5: Crear Capitulo
         "idTemporada": 1  
     }  
 }
+
+Caso de prueba para TipoUsuario:
+
+{
+  "idTipoUsuario": 0,
+  "nombre": "Administrador",
+  "usuarioEntities": []
+}
+
+{
+  "idTipoUsuario": 0,
+  "nombre": "Usuario",
+  "usuarioEntities": []
+}
+
+Caso de prueba para Usuario:
+
+{
+  "idUsuario": 0,
+  "nombre": "Jorge",
+  "apellido": "Moraga",
+  "nombreUsuario": "jmoraga",
+  "contrasena": "789456",
+  "telefono": "982832417",
+  "tipoUsuarioEntity": {
+    "idTipoUsuario": 1,
+    "nombre": "string",
+    "usuarioEntities": []
+  }
+}
+
+{
+  "idUsuario": 0,
+  "nombre": "Nicolas",
+  "apellido": "Carcamo",
+  "nombreUsuario": "ncarcamo",
+  "contrasena": "123456",
+  "telefono": "964682483",
+  "tipoUsuarioEntity": {
+    "idTipoUsuario": 2,
+    "nombre": "string",
+    "usuarioEntities": []
+  }
+}
+
