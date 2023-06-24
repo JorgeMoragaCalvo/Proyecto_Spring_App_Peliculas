@@ -28,6 +28,10 @@ public class CategoriaEntity {
     )
     private List<PeliculaEntity> peliculaEntities;
 
+    public List<PeliculaEntity> getPeliculaEntities() {
+        return peliculaEntities;
+    }
+
 
     /*
     @OneToMany(
