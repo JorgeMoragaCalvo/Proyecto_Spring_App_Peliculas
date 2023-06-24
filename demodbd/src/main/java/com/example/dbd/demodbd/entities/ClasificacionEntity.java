@@ -19,9 +19,7 @@ public class ClasificacionEntity {
     @Column(unique = true, nullable = false)
     private Long idClasificacion;
 
-    @Column(name = "codigo")
     private String codigo;
-    @Column(name = "descripcion")
     private String descripcion;
 
 

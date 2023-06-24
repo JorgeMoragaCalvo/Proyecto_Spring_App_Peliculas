@@ -17,11 +17,8 @@ public class SerieEntity {
     @Column(unique = true, nullable = false)
     private long idSerie;
 
-    @Column(name = "titulo")
     private String titulo;
-    @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "anio")
     private int anio;
 
     @ManyToOne()

@@ -14,13 +14,9 @@ public class CapituloEntity {
     @Column(unique = true, nullable = false)
     private long idCapitulo;
 
-    @Column(name = "titulo")
     private String titulo;
-    @Column(name = "numero")
     private int numero;
-    @Column(name = "duracion")
     private String duracion;
-    @Column(name = "nombre_archivo")
     private String nombre_archivo;
 
     @ManyToOne()

@@ -19,9 +19,7 @@ public class TemporadaEntity {
     @Column(unique = true, nullable = false)
     private long idTemporada;
 
-    @Column(name = "glosa")
     private String glosa;
-    @Column(name = "anio")
     private int anio;
 
     @ManyToOne()

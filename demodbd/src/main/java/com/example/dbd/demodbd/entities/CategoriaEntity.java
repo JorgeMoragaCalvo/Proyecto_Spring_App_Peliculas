@@ -18,7 +18,6 @@ public class CategoriaEntity {
     @Column(unique = true, nullable = false)
     private Long idCategoria;
 
-    @Column(name = "nombre")
     private String nombre;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

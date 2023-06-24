@@ -17,16 +17,11 @@ public class PeliculaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id_pelicula;
-    
-    @Column(name = "titulo")
+
     private String titulo;
-    @Column(name = "anio")
     private int anio;
-    @Column(name = "descripcion")
     private String descripcion;
-    @Column(name = "duracion")
     private String duracion;
-    @Column(name = "nombre_archivo")
     private String nombre_archivo;
 
     @ManyToOne()
