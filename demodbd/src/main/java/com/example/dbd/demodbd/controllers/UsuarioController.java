@@ -16,8 +16,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/createUsuario/")
-    public UsuarioEntity createUsuario(@RequestBody UsuarioEntity clasificacionEntity){
-        return usuarioService.createUsuarios(clasificacionEntity);
+    public UsuarioEntity createUsuario(@RequestBody UsuarioEntity usuarioEntity){
+        return usuarioService.createUsuarios(usuarioEntity);
     }
 
     @GetMapping("/getUsuarios/")
@@ -33,8 +33,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/updateUsuario/{id}")
-    public UsuarioEntity updateUsuario(@PathVariable(value = "id") Long id, @RequestBody UsuarioEntity clasificacionEntity){
-        return usuarioService.updateUsuarios(id, clasificacionEntity);
+    public UsuarioEntity updateUsuario(@PathVariable(value = "id") Long id, @RequestBody UsuarioEntity usuarioEntity){
+        return usuarioService.updateUsuarios(id, usuarioEntity);
     }
 
     @DeleteMapping("/deleteUsuario/{id}")

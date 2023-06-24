@@ -180,3 +180,50 @@ Caso de prueba para Usuario:
   }
 }
 
+Caso de prueba para TipoSuscripcion:
+
+{
+  "idTipoSuscripcion": 0,
+  "nombre": "Mensual",
+  "descripcion": "Se paga mensualmente",
+  "suscripcionEntities": []
+}
+
+{
+  "idTipoSuscripcion": 0,
+  "nombre": "Anual",
+  "descripcion": "Se paga anualmente",
+  "suscripcionEntities": []
+}
+
+Caso de prueba para Suscripcion:
+
+{
+  "idSuscripcion": 0,
+  "fechaInicio": "2023-06-24T03:37:54.856Z",
+  "fechaFin": "2023-06-24T03:37:54.856Z",
+  "numeroTarjeta": "3144356546",
+  "diaFacturacion": 5,
+  "tipoSuscripcionEntity": {
+    "idTipoSuscripcion": 1,
+    "nombre": "string",
+    "descripcion": "string",
+    "suscripcionEntities": [
+    ]
+  }
+}
+
+{
+  "idSuscripcion": 0,
+  "fechaInicio": "2023-06-24T03:37:54.856Z",
+  "fechaFin": "2023-06-24T03:37:54.856Z",
+  "numeroTarjeta": "8746879856",
+  "diaFacturacion": 10,
+  "tipoSuscripcionEntity": {
+    "idTipoSuscripcion": 2,
+    "nombre": "string",
+    "descripcion": "string",
+    "suscripcionEntities": [
+    ]
+  }
+}
