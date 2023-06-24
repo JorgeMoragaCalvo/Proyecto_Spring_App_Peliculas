@@ -38,7 +38,7 @@ public class PeliculaController {
     @GetMapping("/getPeliculaByNombre/{nombre}")
     public PeliculaEntity getPeliculaByNombre(@PathVariable(value = "nombre") String nombre){
         PeliculaEntity peliculaEntity = peliculaService.findPeliculaByName(nombre);
-        if(!peliculaEntity.equals(nombre)) throw new RuntimeException("La Pelicula con el nombre: " + nombre + " no existe");
+        if(!peliculaEntity.getTitulo().equals(nombre)) throw new RuntimeException("La Pelicula con el nombre: " + nombre + " no existe");
         return peliculaEntity;
     }
 

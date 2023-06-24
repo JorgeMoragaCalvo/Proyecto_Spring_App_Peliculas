@@ -32,10 +32,13 @@ public class PeliculaService {
 
     public PeliculaEntity findPeliculaByName(String name) {
         List<PeliculaEntity> Allpeliculas = (List<PeliculaEntity>) peliculaRepository.findAll();
-        for (PeliculaEntity peliculaEntity : Allpeliculas) {
-            if (peliculaEntity.getTitulo().equals(name)) return peliculaEntity;
+        PeliculaEntity peliculaEntity = null;
+        for (PeliculaEntity pelicula : Allpeliculas) {
+            if (pelicula.getTitulo().equals(name)) {
+                peliculaEntity = pelicula;
+            }
         }
-        throw new RuntimeException("No existe la pelicula");
+        return peliculaEntity;
     }
 
 
