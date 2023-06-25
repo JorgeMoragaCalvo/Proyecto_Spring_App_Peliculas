@@ -19,18 +19,12 @@ public class PeliculaService {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private TrabajadorRepository trabajadorRepository;
-
+    @Autowired
+    private UsuarioPeliculaRepository usuarioPeliculaRepository;
     @Autowired
     public PeliculaService(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
     }
-
-    private UsuarioPeliculaRepository usuarioPeliculaRepository;
-
-    public PeliculaService(UsuarioPeliculaRepository usuarioPeliculaRepository) {
-        this.usuarioPeliculaRepository = usuarioPeliculaRepository;
-    }
-
 
 
 

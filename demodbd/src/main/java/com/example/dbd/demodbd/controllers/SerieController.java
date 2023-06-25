@@ -1,5 +1,6 @@
 package com.example.dbd.demodbd.controllers;
 
+import com.example.dbd.demodbd.entities.PeliculaEntity;
 import com.example.dbd.demodbd.entities.SerieEntity;
 import com.example.dbd.demodbd.repositories.SerieRepository;
 import com.example.dbd.demodbd.services.SerieService;
@@ -46,4 +47,10 @@ public class SerieController {
     public void deleteSerie(@PathVariable long id) {
         serieService.deleteSeries(id);
     }
+
+    @GetMapping("/rankingSeries/")
+    public List<SerieEntity> rankingSeries(){
+        return serieService.getRankingSeriesMasValoradas();
+    }
+
 }

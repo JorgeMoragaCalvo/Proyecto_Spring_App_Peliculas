@@ -305,6 +305,46 @@ Caso de prueba usuario pelicula:
   }
 }
 
+{
+  "valoracion": 1,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:36:49",
+  "usuarioEntity": {
+    "idUsuario": 2
+  },
+  "peliculaEntity": {
+    "id_pelicula": 2
+  }
+}
+
+{
+  "valoracion": 3,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:36:49",
+  "usuarioEntity": {
+    "idUsuario": 1
+  },
+  "peliculaEntity": {
+    "id_pelicula": 2
+  }
+}
+
+
+{
+  "valoracion": 2,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:36:49",
+  "usuarioEntity": {
+    "idUsuario": 1
+  },
+  "peliculaEntity": {
+    "id_pelicula": 2
+  }
+}
+
 Caso de prueba Usuario Serie:
 
 {
@@ -317,5 +357,45 @@ Caso de prueba Usuario Serie:
   },
   "serieEntity": {
     "idSerie": 1
+  }
+}
+
+{
+  "valoracion": 2,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:39:25",
+  "usuarioEntity": {
+    "idUsuario": 1
+  },
+  "serieEntity": {
+    "idSerie": 2
+  }
+}
+
+
+{
+  "valoracion": 3,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:39:25",
+  "usuarioEntity": {
+    "idUsuario": 2
+  },
+  "serieEntity": {
+    "idSerie": 1
+  }
+}
+
+{
+  "valoracion": 5,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:39:25",
+  "usuarioEntity": {
+    "idUsuario": 2
+  },
+  "serieEntity": {
+    "idSerie": 2
   }
 }

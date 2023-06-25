@@ -13,7 +13,7 @@ public interface UsuarioPeliculaRepository extends CrudRepository<UsuarioPelicul
 
     @Query("SELECT up.peliculaEntity, AVG(up.valoracion)" +
             "FROM UsuarioPeliculaEntity up " +
-            "GROUP BY up.peliculaEntity" +
-            " ORDER BY AVG(up.valoracion) DESC")
+            "GROUP BY up.peliculaEntity " +
+            "ORDER BY AVG(up.valoracion) DESC")
     List<Object[]> getValoracionPromedioPorPelicula();
 }
