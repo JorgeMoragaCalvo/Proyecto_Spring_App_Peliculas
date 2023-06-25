@@ -48,6 +48,13 @@ public class CategoriaController {
         return categoriaService.assignPeliculaToCategorias(id_categoria, id_pelicula);
     }
 
+    @PutMapping("/assignSerieToCategoria/{id_categoria}/serie/{id_serie}")
+    public CategoriaEntity assignSerieToCategoria(
+            @PathVariable(value = "id_categoria") Long id_categoria,
+            @PathVariable(value = "id_serie") Long id_serie){
+        return categoriaService.assignSeriesToCategorias(id_categoria, id_serie);
+    }
+
     @DeleteMapping("/deleteCategoria/{id}")
     public void deleteCategoria(@PathVariable(value = "id") Long id){
         categoriaService.deleteCategorias(id);

@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +30,14 @@ public class SerieEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_productora")
     private ProductoraEntity productoraEntity;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "serieEntities")
+    private List<CategoriaEntity> categoriaEntities;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "serieEntities")
+    private List<TrabajadorEntity> trabajadorEntities;
 
     public ClasificacionEntity getClasificacionEntity() {
         return clasificacionEntity;

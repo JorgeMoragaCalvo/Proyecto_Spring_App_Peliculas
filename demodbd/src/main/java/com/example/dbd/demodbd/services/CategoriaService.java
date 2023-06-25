@@ -2,8 +2,10 @@ package com.example.dbd.demodbd.services;
 
 import com.example.dbd.demodbd.entities.CategoriaEntity;
 import com.example.dbd.demodbd.entities.PeliculaEntity;
+import com.example.dbd.demodbd.entities.SerieEntity;
 import com.example.dbd.demodbd.repositories.CategoriaRepository;
 import com.example.dbd.demodbd.repositories.PeliculaRepository;
+import com.example.dbd.demodbd.repositories.SerieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class CategoriaService {
     @Autowired
     private PeliculaRepository peliculaRepository;
 
+    @Autowired
+    private SerieRepository serieRepository;
     public final CategoriaRepository categoriaRepository;
 
     @Autowired
@@ -47,6 +51,15 @@ public class CategoriaService {
         PeliculaEntity peliculaEntity = peliculaRepository.findById(id_pelicula).get();
         peliculas = categoriaEntity.getPeliculaEntities();
         peliculas.add(peliculaEntity);
+        return categoriaRepository.save(categoriaEntity);
+    }
+
+    public CategoriaEntity assignSeriesToCategorias(Long id_categoria, Long id_serie){
+        List<SerieEntity> series;
+        CategoriaEntity categoriaEntity = categoriaRepository.findById(id_categoria).get();
+        SerieEntity serieEntity = serieRepository.findById(id_serie).get();
+        series = categoriaEntity.getSerieEntities();
+        series.add(serieEntity);
         return categoriaRepository.save(categoriaEntity);
     }
 

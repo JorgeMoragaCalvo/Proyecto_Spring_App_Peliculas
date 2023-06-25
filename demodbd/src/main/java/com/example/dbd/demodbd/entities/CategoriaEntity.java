@@ -34,26 +34,17 @@ public class CategoriaEntity {
         return peliculaEntities;
     }
 
-
-    /*
-    @OneToMany(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "categoriaEntity"
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "serie_categoria",
+            joinColumns = @JoinColumn(name = "categoria_id"),
+            inverseJoinColumns = @JoinColumn(name = "serie_id")
     )
-    private List<PeliculaEntity> peliculaEntities;
-    */
+    private List<SerieEntity> serieEntities;
 
-    /*
-    @JsonManagedReference
-    public List<PeliculaEntity> getPeliculaEntities() {
-        return peliculaEntities;
+    public List<SerieEntity> getSerieEntities() {
+        return serieEntities;
     }
-
-    public void setPeliculaEntities(List<PeliculaEntity> peliculaEntities) {
-        this.peliculaEntities = peliculaEntities;
-    }
-    */
 
     public Long getIdCategoria() {
         return idCategoria;

@@ -1,8 +1,6 @@
 package com.example.dbd.demodbd.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -38,6 +36,10 @@ public class PeliculaEntity {
     @JsonIgnore
     @ManyToMany(mappedBy = "peliculaEntities")
     private List<CategoriaEntity> categoriaEntities;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "peliculaEntities")
+    private List<TrabajadorEntity> trabajadorEntities;
 
     public ClasificacionEntity getClasificacionEntity() {
         return clasificacionEntity;

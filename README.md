@@ -245,3 +245,45 @@ Caso de prueba para Suscripcion:
     ]
   }
 }
+
+Caso de prueba para labor:
+
+{
+  "nombre": "Director"
+}
+
+{
+  "nombre": "Productor"
+}
+
+{
+  "nombre": "Actor"
+}
+
+Caso de prueba para trabajadores:
+
+{
+  "nombre": "chuck",
+  "apellidoPrimario": "norris",
+  "apellidoSecundario": "norris",
+  "laborEntity": {
+    "idLabor": 3
+  }
+}
+
+
+{
+  "nombre": "silvester",
+  "apellidoPrimario": "stalone",
+  "laborEntity": {
+    "idLabor": 3
+  }
+}
+
+{
+  "nombre": "quentin",
+  "apellidoPrimario": "tarantino",
+  "laborEntity": {
+    "idLabor": 1
+  }
+}

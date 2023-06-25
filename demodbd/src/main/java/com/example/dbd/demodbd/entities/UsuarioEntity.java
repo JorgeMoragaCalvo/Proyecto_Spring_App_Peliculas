@@ -39,6 +39,30 @@ public class UsuarioEntity {
         return suscripcionEntities;
     }
 
+    /*@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "usuario_pelicula",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "pelicula_id")
+    )
+    private List<PeliculaEntity> peliculaEntities;
+
+    public List<PeliculaEntity> getPeliculaEntities() {
+        return peliculaEntities;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "usuario_serie",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "serie_id")
+    )
+    private List<SerieEntity> serieEntities;
+
+    public List<SerieEntity> getSerieEntities() {
+        return serieEntities;
+    }*/
+
     public Long getIdUsuario() {
         return idUsuario;
     }
