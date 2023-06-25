@@ -24,11 +24,10 @@ public class TemporadaEntity {
     private String glosa;
     private int anio;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "serie_id")
     private SerieEntity serieEntity;
 
-    @JsonBackReference
     public SerieEntity getSerieEntity() {
         return serieEntity;
     }

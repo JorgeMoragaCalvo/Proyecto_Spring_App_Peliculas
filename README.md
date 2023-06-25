@@ -30,6 +30,10 @@ Paso 1.2: Crear categoria
   "nombre": "Terror"
 }
 
+{
+  "nombre": "Suspenso"
+}
+
 PASO 2: crear peliculas  
 {
 "titulo": "Espias",  
@@ -119,55 +123,53 @@ PASO 3: Crear Series
 
 
 PASO 4: Crear Temporada  
-{  
+{
 "glosa": "Quinta Temporada",  
-"anio": 2019,  
-    "SerieEntity": {  
-        "idSerie": 1  
-    }
-}  
+"anio": 2019,
+  "serieEntity": {
+    "idSerie": 1
+ }
+}
 
-
-{  
+{
 "glosa": "Primera Temporada",  
 "anio": 2021,  
-    "SerieEntity": {  
-        "idSerie": 2  
-    }  
-}  
+  "serieEntity": {
+    "idSerie": 2
+ }
+}
+
 
 
 PASO 5: Crear Capitulo  
-{  
+{
 "titulo": "Inicio",  
 "numero": 1,  
 "duracion": "45min",  
 "nombre_archivo": "inicio.mp4",  
-    "TemporadaEntity": {  
-        "idTemporada": 2  
-    }  
-}  
+  "temporadaEntity": {
+    "idTemporada": 1
+  }
+}
 
-
-{  
+{
 "titulo": "Juegos",  
 "numero": 3,  
 "duracion": "40min",  
-"nombre_archivo": "juegos.mp4",  
-    "TemporadaEntity": {  
-        "idTemporada": 2  
-    }  
-}  
-
+"nombre_archivo": "inicio.mp4",  
+  "temporadaEntity": {
+    "idTemporada": 2
+  }
+}
 
 {
 "titulo": "Winter is Coming",  
 "numero": 2,  
 "duracion": "42min",  
-"nombre_archivo": "winter.mp4",  
-    "TemporadaEntity": {  
-        "idTemporada": 1  
-    }  
+"nombre_archivo": "winter.mp4",    
+  "temporadaEntity": {
+    "idTemporada": 1
+  }
 }
 
 Caso de prueba para TipoUsuario:
@@ -207,48 +209,34 @@ Caso de prueba para Usuario:
 Caso de prueba para TipoSuscripcion:
 
 {
-  "idTipoSuscripcion": 0,
   "nombre": "Mensual",
-  "descripcion": "Se paga mensualmente",
-  "suscripcionEntities": []
+  "descripcion": "Se paga mensualmente"
 }
 
 {
-  "idTipoSuscripcion": 0,
   "nombre": "Anual",
-  "descripcion": "Se paga anualmente",
-  "suscripcionEntities": []
+  "descripcion": "Se paga anualmente"
 }
 
 Caso de prueba para Suscripcion:
 
 {
-  "idSuscripcion": 0,
   "fechaInicio": "2023-06-24T03:37:54.856Z",
   "fechaFin": "2023-06-24T03:37:54.856Z",
   "numeroTarjeta": "3144356546",
   "diaFacturacion": 5,
   "tipoSuscripcionEntity": {
-    "idTipoSuscripcion": 1,
-    "nombre": "string",
-    "descripcion": "string",
-    "suscripcionEntities": [
-    ]
+    "idTipoSuscripcion": 1
   }
 }
 
 {
-  "idSuscripcion": 0,
   "fechaInicio": "2023-06-24T03:37:54.856Z",
   "fechaFin": "2023-06-24T03:37:54.856Z",
   "numeroTarjeta": "8746879856",
   "diaFacturacion": 10,
   "tipoSuscripcionEntity": {
-    "idTipoSuscripcion": 2,
-    "nombre": "string",
-    "descripcion": "string",
-    "suscripcionEntities": [
-    ]
+    "idTipoSuscripcion": 2
   }
 }
 

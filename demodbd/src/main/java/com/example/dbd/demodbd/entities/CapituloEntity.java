@@ -21,11 +21,10 @@ public class CapituloEntity {
     private String duracion;
     private String nombre_archivo;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "temporada_id")
     private TemporadaEntity temporadaEntity;
 
-    @JsonBackReference
     public TemporadaEntity getTemporadaEntity() {
         return temporadaEntity;
     }
