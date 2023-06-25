@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class PeliculaService {
-    private final PeliculaRepository peliculaRepository;
+    private PeliculaRepository peliculaRepository;
     private static final String LABOR_DIRECTOR = "Director";
     @Autowired
     private CategoriaRepository categoriaRepository;
@@ -24,6 +24,34 @@ public class PeliculaService {
     public PeliculaService(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
     }
+
+    private UsuarioPeliculaRepository usuarioPeliculaRepository;
+
+    public PeliculaService(UsuarioPeliculaRepository usuarioPeliculaRepository) {
+        this.usuarioPeliculaRepository = usuarioPeliculaRepository;
+    }
+
+
+
+
+    public List<PeliculaEntity> getRankingPeliculasMasValoradas(){
+        List<Object[]> peliculasValoracionPromedio = usuarioPeliculaRepository.getValoracionPromedioPorPelicula();
+
+        peliculasValoracionPromedio.sort((o1, o2) -> {
+            Double valoracion1 = (Double) o1[1];
+            Double valoracion2 = (Double) o2[1];
+            return valoracion2.compareTo(valoracion1);
+        });
+
+        List<PeliculaEntity> rankingPeliculas = new ArrayList<>();
+        for(Object[] peliculaValoracionPromedio : peliculasValoracionPromedio){
+            PeliculaEntity peliculaEntity = (PeliculaEntity) peliculaValoracionPromedio[0];
+            rankingPeliculas.add(peliculaEntity);
+        }
+        return rankingPeliculas;
+    }
+
+
 
     public PeliculaEntity createPeliculas(PeliculaEntity peliculaEntity){
         return peliculaRepository.save(peliculaEntity);

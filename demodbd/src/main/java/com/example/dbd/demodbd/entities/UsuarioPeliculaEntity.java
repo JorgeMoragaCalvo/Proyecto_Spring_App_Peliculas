@@ -28,8 +28,8 @@ public class UsuarioPeliculaEntity {
     private UsuarioEntity usuarioEntity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "serie_id")
-    private PeliculaEntity serieEntity;
+    @JoinColumn(name = "pelicula_id")
+    private PeliculaEntity peliculaEntity;
 
     public Integer getIdUsuarioPelicula() {
         return idUsuarioPelicula;
@@ -64,11 +64,11 @@ public class UsuarioPeliculaEntity {
 
 
     public PeliculaEntity getPeliculaEntity() {
-        return serieEntity;
+        return peliculaEntity;
     }
 
-    public void setPeliculaEntity(PeliculaEntity serieEntity) {
-        this.serieEntity = serieEntity;
+    public void setPeliculaEntity(PeliculaEntity peliculaEntity) {
+        this.peliculaEntity = peliculaEntity;
     }
 
 

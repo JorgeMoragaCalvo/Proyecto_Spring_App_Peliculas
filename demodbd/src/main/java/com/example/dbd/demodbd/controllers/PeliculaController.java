@@ -63,6 +63,12 @@ public class PeliculaController {
         return peliculas;
     }
 
+    @GetMapping("/rankingPeliculas/")
+    public List<PeliculaEntity> rankingPeliculas(){
+        return peliculaService.getRankingPeliculasMasValoradas();
+    }
+
+
     @PutMapping("/updatePelicula/{id}")
     public PeliculaEntity updatePelicula(@PathVariable(value = "id") Long id, @RequestBody PeliculaEntity peliculaEntity){
         return peliculaService.updatePeliculas(id, peliculaEntity);
