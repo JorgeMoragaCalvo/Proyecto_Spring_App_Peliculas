@@ -19,8 +19,6 @@ public class TrabajadorEntity {
     @Column(unique = true, nullable = false)
     private Integer idTrabajador;
     private String nombre;
-    private String apellidoPrimario;
-    private String apellidoSecundario;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -64,22 +62,6 @@ public class TrabajadorEntity {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public void setApellidoPrimario(String apellidoPrimario) {
-        this.apellidoPrimario = apellidoPrimario;
-    }
-
-    public String getApellidoPrimario() {
-        return apellidoPrimario;
-    }
-
-    public void setApellidoSecundario(String apellidoSecundario) {
-        this.apellidoSecundario = apellidoSecundario;
-    }
-
-    public String getApellidoSecundario() {
-        return apellidoSecundario;
     }
 
     @JsonBackReference

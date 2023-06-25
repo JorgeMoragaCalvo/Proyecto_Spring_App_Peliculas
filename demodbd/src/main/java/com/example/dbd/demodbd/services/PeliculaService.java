@@ -1,16 +1,24 @@
 package com.example.dbd.demodbd.services;
 
+import com.example.dbd.demodbd.entities.CategoriaEntity;
 import com.example.dbd.demodbd.entities.PeliculaEntity;
-import com.example.dbd.demodbd.repositories.PeliculaRepository;
+import com.example.dbd.demodbd.entities.TrabajadorEntity;
+import com.example.dbd.demodbd.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PeliculaService {
     private final PeliculaRepository peliculaRepository;
+    private static final String LABOR_DIRECTOR = "Director";
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+    @Autowired
+    private TrabajadorRepository trabajadorRepository;
 
     @Autowired
     public PeliculaService(PeliculaRepository peliculaRepository) {
@@ -40,6 +48,40 @@ public class PeliculaService {
         return peliculaEntity;
     }
 
+    public List<PeliculaEntity> findPeliculaByCategory(String nombreCategoria) {
+        List<CategoriaEntity> allCategorias = (List<CategoriaEntity>) categoriaRepository.findAll();
+        List<PeliculaEntity> filteredPeliculas = new ArrayList<>();
+        for (CategoriaEntity categoria : allCategorias) {
+            if (categoria.getNombre().equals(nombreCategoria)) {
+                filteredPeliculas = categoria.getPeliculaEntities();
+                return filteredPeliculas;
+            }
+        }
+        return filteredPeliculas;
+    }
+
+    public List<PeliculaEntity> findPeliculaByProducer(String nombreProductora) {
+        List<PeliculaEntity> allPeliculas = (List<PeliculaEntity>) peliculaRepository.findAll();
+        List<PeliculaEntity> filteredPeliculas = new ArrayList<>();
+        for (PeliculaEntity pelicula : allPeliculas) {
+            if (pelicula.getProductoraEntity().getNombre().equals(nombreProductora)) {
+                filteredPeliculas.add(pelicula);
+            }
+        }
+        return filteredPeliculas;
+    }
+
+    public List<PeliculaEntity> findPeliculaByDirectorName(String nombreDirector) {
+        List<TrabajadorEntity> allTrabajadores = (List<TrabajadorEntity>) trabajadorRepository.findAll();
+        List<PeliculaEntity> filteredPeliculas = new ArrayList<>();
+        for (TrabajadorEntity trabajador : allTrabajadores) {
+            if (trabajador.getNombre().equals(nombreDirector) && trabajador.getLaborEntity().getNombre().equals(LABOR_DIRECTOR)) {
+                filteredPeliculas = trabajador.getPeliculaEntities();
+                return filteredPeliculas;
+            }
+        }
+        return filteredPeliculas;
+    }
 
     public PeliculaEntity updatePeliculas(Long id, PeliculaEntity peliculaEntity){
         if(!peliculaRepository.existsById(id)) throw new RuntimeException("No existe la pelicula");

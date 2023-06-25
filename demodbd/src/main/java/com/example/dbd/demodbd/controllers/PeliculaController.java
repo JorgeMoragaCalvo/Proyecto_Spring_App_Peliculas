@@ -42,6 +42,27 @@ public class PeliculaController {
         return peliculaEntity;
     }
 
+    @GetMapping("/getPeliculasByCategory/{category}")
+    public List<PeliculaEntity> getPeliculasByCategory(@PathVariable(value = "category") String categoria){
+        List<PeliculaEntity> peliculas = peliculaService.findPeliculaByCategory(categoria);
+        if(peliculas.isEmpty()) throw new RuntimeException("La Categoria con el nombre " + categoria + " no tiene peliculas");
+        return peliculas;
+    }
+
+    @GetMapping("/getPeliculasByProducer/{producer}")
+    public List<PeliculaEntity> getPeliculasByProducer(@PathVariable(value = "producer") String productora){
+        List<PeliculaEntity> peliculas = peliculaService.findPeliculaByProducer(productora);
+        if(peliculas.isEmpty()) throw new RuntimeException("La Productora con el nombre " + productora + " no tiene peliculas");
+        return peliculas;
+    }
+
+    @GetMapping("/getPeliculaByDirectorName/{name}")
+    public List<PeliculaEntity> getPeliculaByDirectorName(@PathVariable(value = "name") String nombre){
+        List<PeliculaEntity> peliculas = peliculaService.findPeliculaByDirectorName(nombre);
+        if(peliculas.isEmpty()) throw new RuntimeException("La Director con el nombre: " + nombre + " no tiene peliculas");
+        return peliculas;
+    }
+
     @PutMapping("/updatePelicula/{id}")
     public PeliculaEntity updatePelicula(@PathVariable(value = "id") Long id, @RequestBody PeliculaEntity peliculaEntity){
         return peliculaService.updatePeliculas(id, peliculaEntity);

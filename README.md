@@ -24,6 +24,12 @@ Paso 1.1: Crear productora
   "nombre": "Warner Bros. Entertainment"
 }
 
+Paso 1.2: Crear categoria
+
+{
+  "nombre": "Terror"
+}
+
 PASO 2: crear peliculas  
 {
 "titulo": "Espias",  
@@ -263,9 +269,7 @@ Caso de prueba para labor:
 Caso de prueba para trabajadores:
 
 {
-  "nombre": "chuck",
-  "apellidoPrimario": "norris",
-  "apellidoSecundario": "norris",
+  "nombre": "chuck norris",
   "laborEntity": {
     "idLabor": 3
   }
@@ -273,17 +277,45 @@ Caso de prueba para trabajadores:
 
 
 {
-  "nombre": "silvester",
-  "apellidoPrimario": "stalone",
+  "nombre": "silvester stasolo",
   "laborEntity": {
     "idLabor": 3
   }
 }
 
 {
-  "nombre": "quentin",
-  "apellidoPrimario": "tarantino",
+  "nombre": "quentin tarantino",
   "laborEntity": {
     "idLabor": 1
+  }
+}
+
+Caso de prueba usuario pelicula:
+
+{
+  "valoracion": 4,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:36:49",
+  "usuarioEntity": {
+    "idUsuario": 1
+  },
+  "peliculaEntity": {
+    "id_pelicula": 1
+  }
+}
+
+Caso de prueba Usuario Serie:
+
+{
+  "valoracion": 0,
+  "favorito": true,
+  "visualizado": true,
+  "tiempoVisualizacion": "01:39:25",
+  "usuarioEntity": {
+    "idUsuario": 1
+  },
+  "serieEntity": {
+    "idSerie": 1
   }
 }

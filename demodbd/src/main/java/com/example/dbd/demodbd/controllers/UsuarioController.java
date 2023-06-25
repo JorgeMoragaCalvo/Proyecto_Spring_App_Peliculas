@@ -22,8 +22,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/getUsuarios/")
-    public List<UsuarioEntity> getUsuarios(){
-        return usuarioService.getAllUsuarios();
+    public List<UsuarioEntity> getUsuarios(){return usuarioService.getAllUsuarios();
     }
 
     @GetMapping("/getUsuarioById/{id}")
