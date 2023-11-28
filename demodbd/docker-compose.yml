@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  homecine1:
+    container_name: container-homecine1
+    image: ncarcamo/homecine:latest
+    build: ..
+    ports:
+      - 8060:8060
+    environment:
+      - DATABASE_URL=jdbc:postgresql://java_db:5432/homecine
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=123
+      - DATABASE_PERSISTENTCE=update
+    depends_on:
+      - java_db
+  java_db:
+    container_name: java_db
+    restart: always
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: homecine
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

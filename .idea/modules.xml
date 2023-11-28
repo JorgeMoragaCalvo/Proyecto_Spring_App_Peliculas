@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/demodbd.iml" filepath="$PROJECT_DIR$/.idea/demodbd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Proyecto_Spring_App_Peliculas.iml" filepath="$PROJECT_DIR$/.idea/Proyecto_Spring_App_Peliculas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demodbd/demodbd.iml" filepath="$PROJECT_DIR$/demodbd/demodbd.iml" />
     </modules>
   </component>
 </project>
